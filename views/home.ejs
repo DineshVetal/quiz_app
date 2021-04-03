@@ -1,0 +1,49 @@
+<html>
+  <head>
+    <title>Quiz APP</title>
+</head>
+<body>
+    <h1><%= title%></h1>
+    <form >
+        <div class="form-group">
+            <% data.map((item,i) => { %>
+                <label><%=item.question%></label>
+            </br>
+            <select onchange="handleSelect(value, <%=item.answer%>, <%= i%>)" class="form-control">
+                <option value="" >Select</option>
+                <% item.options.map(o => { %>
+                    <option   value= <%= o.id %> > <%=o.value%></option>
+                    <% })%>
+                </select>
+            </br>
+        </br>
+        <% })%>
+        <button style="color: red;" onclick="handleSubmit(event,<%= data.length%>)">Submit</button>
+    </div>
+    </form>
+    <h1 id="score">score</h1>
+    <script>
+        let answer = []
+        let ansC = []
+        handleSelect = (value,ans,index) => {
+            answer[index] = value
+            ansC[index] = ans
+            console.log(answer)
+            console.log(ansC)
+        }
+        handleSubmit = (event,len) => {
+            let count = 0
+            event.preventDefault()
+            for (let i = 0; i < answer.length; i++) {
+                if(answer[i] && answer[i] == ansC[i]) {
+                    count++
+                }
+            }
+            console.log(count)
+            let score = document.getElementById("score")
+            score.innerHTML = count +'/'+len
+        }
+        
+    </script>
+</body>
+</html>
