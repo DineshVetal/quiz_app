@@ -12,8 +12,7 @@
         <div class="form-group col-md-5" style="    margin-left: 29px;">
             <% data.map((item,i) => { %>
                 <label><%= i+1+') '%><%=item.question%></label>
-            <!-- </br> -->
-            <select onchange="handleSelect(value, <%=item.answer%>, <%= i%>)" class="form-control">
+                <select onchange="handleSelect(value, <%=item.answer%>, <%= i%>)" class="form-control">
                 <option value="" >Select</option>
                 <% item.options.map(o => { %>
                     <option   value= <%= o.id %> > <%=o.value%></option>
@@ -40,7 +39,6 @@
                 for (let i = 0; i < answer.length; i++) {
                     if(answer[i] && answer[i] == ansC[i]) {
                         count++
-                    
                     }
                 }
                 window.location.href = `https://quiz-app-ejs.herokuapp.com/response?count=${count}`
