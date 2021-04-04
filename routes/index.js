@@ -33,7 +33,10 @@ const client = new Client({
 client.connect();
 
 router.get('/', function(req, res, next){
-  client.query('SELECT question_id, question, options, answer,o.id as answer_id FROM public."tbl_Questions" as q join public."tbl_Options" as o on q.id=o.question_id', (error, results) => {
+  client.query(`SELECT question_id, question, options, answer,o.id as answer_id
+    FROM (
+      select * from public."tbl_Questions" order by random() limit 5
+    ) as q join public."tbl_Options" as o on q.id=o.question_id;`, (error, results) => {
     if (error) {
       throw error
     }
@@ -63,7 +66,7 @@ router.get('/', function(req, res, next){
     console.log(data)
 
   res.render('home', { title: 'Questions' , data});
-  client.end()
+  // client.end()
   })
   
 });

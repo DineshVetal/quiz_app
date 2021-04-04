@@ -21,7 +21,7 @@
         <button style="color: red;" onclick="handleSubmit(event,<%= data.length%>)">Submit</button>
     </div>
     </form>
-    <h1 id="score">score</h1>
+    <h1 id="score">Please answer all the questions and then submit to see the score </h1>
     <script>
         let answer = []
         let ansC = []
@@ -41,7 +41,7 @@
             }
             console.log(count)
             let score = document.getElementById("score")
-            score.innerHTML = count +'/'+len
+            score.innerHTML = "your score is " + count +'/'+len
         }
         
     </script>
